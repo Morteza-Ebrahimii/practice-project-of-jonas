@@ -6,7 +6,7 @@ function Pizzas() {
     return (
         <>
             <ul className="pizzas">
-            < Pizza data={data}/>
+                {data.map(data => < Pizza data={data} key={data.name}/>)}
             </ul>
         </>
     )
