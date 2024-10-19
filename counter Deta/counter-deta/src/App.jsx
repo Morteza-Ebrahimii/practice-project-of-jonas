@@ -1,53 +1,69 @@
-import { useState } from 'react'
-import '../src/index.css'
-import { GetDate } from './GetDate'
+import { useState } from "react";
+import "./index.css";
 
-
-function App() {
-
-  const [currentDate, setCurrentDate] = useState(new Date())
-  const [count, setCount] = useState(0)
-  const [step, setStep] = useState(1)
-
-  const incrementDay = () => {
-    const newDate = new Date(currentDate);
-    newDate.setDate(newDate.getDate() + step);
-    setCurrentDate(newDate);
-    setCount(c => c + step)
-  }
-  const decerement = () => {
-    const newDate = new Date(currentDate);
-    newDate.setDate(newDate.getDate() - step);
-    setCurrentDate(newDate);
-    setCount(c => c - step)
-  }
-
-  const hanleIncrementStep = () => {
-    setStep(s => s + 1)
-  }
-  const handleDecrementstep = () => {
-    setStep(
-      step > 1 ? s => s - 1 : step)
-  }
-
-
+export default function App() {
   return (
-    <>
-      <div className="container">
-        <div className="button">
-          <button onClick={handleDecrementstep}>-</button>
-          <h3>Step : {step}</h3>
-          <button onClick={hanleIncrementStep}>+</button>
-        </div>
-        <div className="button">
-          <button onClick={decerement}>-</button>
-          <h3>Count : {count}</h3>
-          <button onClick={incrementDay}>+</button>
-        </div>
-        < GetDate currentDate={currentDate} count={count}/>
-      </div>
-    </>
-  )
+    <div className="App">
+      <Counter />
+    </div>
+  );
 }
 
-export default App
+function Counter() {
+  const [count, setCount] = useState(0);
+  const [step, setStep] = useState(1);
+
+  const date = new Date();
+  date.setDate(date.getDate() + count);
+
+  const handleReset = () => {
+    setCount(0);
+    setStep(1)
+  }
+
+  return (
+    <div>
+      <div>
+        <input type="range" min='0' max='10'
+          value={step}
+          onChange={(e) => setStep(+e.target.value)}
+        />
+        <span>{step}</span>
+      </div>
+
+      <div>
+        <button onClick={() => {
+          const newCount = count - step;
+          setCount(newCount);
+        }}>-</button>
+        <input type="text"
+          value={count}
+          onChange={(e) => {
+            const newValue = Number(e.target.value)
+            setCount(newValue);
+          }}
+        />
+        <button onClick={() => {
+          const newCount = count + step;
+          setCount(newCount);
+        }}>+</button>
+      </div>
+
+      <p>
+        <span>
+          {count === 0
+            ? "Today is "
+            : count > 0
+              ? `${count} days from today is `
+              : `${Math.abs(count)} days ago was `}
+        </span>
+        <span>{date.toDateString()}</span>
+      </p>
+      {count !== 0 || step !== 1 ?
+        <div>
+          <button onClick={handleReset}>Reset</button>
+        </div>
+        : null}
+    </div>
+  );
+}
