@@ -17,7 +17,7 @@ export function FormAddFriends({ onAddFriends }) {
             id,
             name,
             image: `${image}?=${id}`,
-            balense: 0
+            balance: 0
         };
 
         onAddFriends(newItem);

@@ -8,10 +8,10 @@ import { FormSplitBill } from './FormSplitBill'
 
 function App() {
 
+
   const [showAddFriend, setShowAddFriend] = useState(false)
   const [friend, setFriend] = useState(friends)
   const [selectedFriend, setSelectedFriend] = useState(null)
-
 
   const handleShowAddFreind = () => {
     setShowAddFriend(show => !show)
@@ -28,10 +28,10 @@ function App() {
   }
 
   function handleSplitBill(value) {
-    setFriend(friends => friends.map((friend) =>
-      friend.id === selectedFriend.id ?
+    setFriend(friends => friends.map((friend) => {
+      return friend.id === selectedFriend.id ?
         { ...friend, balance: friend.balance + value } : friend
-    ))
+    }))
     setSelectedFriend(null)
   }
 
