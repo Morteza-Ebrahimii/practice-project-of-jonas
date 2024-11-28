@@ -9,6 +9,8 @@ export default function List() {
     const handleSubmit = (e) => {
         e.preventDefault()
 
+        if(input === '')return
+
         const newItem = {
             id: crypto.randomUUID(),
             task: input,
@@ -26,16 +28,19 @@ export default function List() {
 
     return (
         <form onSubmit={handleSubmit}>
-            <input type="text" placeholder="Add new task" value={input} onChange={(e) => setInput(e.target.value)} />
-            <button >Add</button>
+            <div>
 
-            <ol className="list">
+                <input type="text" placeholder="Add new task" value={input} onChange={(e) => setInput(e.target.value)} />
+                <button >Add</button>
 
-                {task.length === 0 ? <h3>you doing Add your tasks🎉</h3> :
-                    task.map((item) =>
-                        <Item key={item.id} task={item} onDelete={hadnleDelete} />
-                    )}
-            </ol>
+                <ol className="list">
+
+                    {task.length === 0 ? <h3>Let`s start, Add your tasks🎉</h3> :
+                        task.map((item) =>
+                            <Item key={item.id} task={item} onDelete={hadnleDelete} />
+                        )}
+                </ol>
+            </div>
         </form>
     )
 }

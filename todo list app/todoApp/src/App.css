@@ -6,6 +6,12 @@
 
 .app{
     margin: 2em;
+    text-align: center;
+}
+form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .container-item{
@@ -18,7 +24,7 @@
     margin-top: 2em;
 }
 .header{
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 .checked{
     text-decoration: line-through;
