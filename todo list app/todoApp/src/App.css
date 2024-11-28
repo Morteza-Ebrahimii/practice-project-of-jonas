@@ -1,0 +1,35 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.app{
+    margin: 2em;
+}
+
+.container-item{
+    display: flex;
+}
+.container-item > *{
+    margin: 5px 3px;
+}
+.list{
+    margin-top: 2em;
+}
+.header{
+    margin-bottom: 5px;
+}
+.checked{
+    text-decoration: line-through;
+    opacity: .6;
+}
+.items{
+    display: flex;
+}
+.delete-itme{
+    border: none;
+    background-color: white;
+    margin: 0 5px;
+
+}
